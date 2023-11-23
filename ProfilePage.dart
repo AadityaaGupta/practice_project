@@ -1,7 +1,9 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:newrepo/Navigation.dart';
 import 'package:newrepo/dashboard.dart';
+import 'package:newrepo/logn_page.dart';
 import 'package:newrepo/user.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,9 +16,9 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int i=1;
-  
-  List<String> menu=['DashBoard','User','unknown','unknown','unknown','unknown','unknown','unknown','unknown','unknown'];
+  int i=0;
+  LoginPage d= new LoginPage();
+  List<String> menu=['DashBoard','User','Navigation','unknown','unknown','unknown','unknown','unknown','unknown','unknown'];
    
     List<UserDetails> user=[
     UserDetails(sNo:1, name:'redmi 9', deviceDetail:'4G', tokenNo:2),
@@ -30,18 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Profile Page',
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 50.0,
-              backgroundColor: Colors.green.shade100,
-            ),
-          ),
-        ),
-      ),
+    
       body: Container(
         child: Row(
           children: [
@@ -55,6 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 5.0),
                           height: 60.0,
+                          
                           decoration: BoxDecoration(
                               color: const Color.fromARGB(255, 255, 193, 7),
                               border: Border.all(
@@ -75,10 +67,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         },
                       );
                     }),
-                // ListView(
-                //   scrollDirection: Axis.vertical,
-                //   children: [
-                //
+                
+                
               ),
             ),
             Expanded(
@@ -102,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
       return User();
 
       case 2 :
-      return Text('m3');
+      return Navigation();
 
       case 3 :
       return Text('m4');
@@ -147,70 +137,4 @@ class UserDetails
   }
 }
 
-// class User extends StatefulWidget {
-//   const User({super.key});
-
-//   @override
-//   State<User> createState() => _UserState();
-// }
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-      
-//       body: Container(
-//         decoration: BoxDecoration(
-//           border: Border.all(
-//             width: 3.0,
-//             color: Colors.black,
-            
-//           ),
-//           borderRadius: BorderRadius.circular(3.0),
-//         ),
-//         child: Column(
-//           children: [
-//             Container(
-//               height: 40.0,
-//               child: TextField(
-//                 style: TextStyle(
-//                   fontSize: 30.0,
-//                   fontWeight: FontWeight.w900,
-//                 ) ,
-//                 textAlign: TextAlign.center,
-//                 decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                     borderRadius: BorderRadius.circular(50.0),
-
-//                   ),
-//                   hintText: ' Search ',
-//                   suffixIcon: const Icon(Icons.search,
-//                   size: 30.0,
-//                   ),
-                   
-                  
-//                 ),
-                
-//               ),
-//             ),
-//             Container(
-//                  child: ListView.builder(
-//                    itemCount: user.length ,
-//                    itemBuilder: (BuildContext context,int index){
-//                    return Container(
-//                        height: 40.0,
-//                       ,
-//                    );
-//                  }
-                
-//                  ),
-
-//             ),
-//           ],
-//         )
-//       ),
-
-//     );
-//   }
-// }
 
