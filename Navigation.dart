@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newrepo/ProfilePage.dart';
-import 'package:newrepo/mycustomeviwe.dart';
+import 'package:my_first_app/ProfilePage.dart';
+import 'package:my_first_app/StarRatingView.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -23,7 +23,7 @@ class _NavigationState extends State<Navigation> {
   ];
 
   List<UserDetails> dName = [];
-
+  Set<String> selectedName = {};
   @override
   void initState() {
     dName.addAll(userName);
@@ -39,18 +39,10 @@ class _NavigationState extends State<Navigation> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+// StarRatingView((value){
 
-
-StarRatingView((value){
-
-  print(value);
-}),
-
-
-
-
-
-
+//   print(value);
+// }),
 
             Expanded(
               child: Container(
@@ -96,17 +88,19 @@ StarRatingView((value){
                                     child: TextField(
                                       controller: editingController,
                                       onChanged: (value) {
-                                         dName.clear();
-    dName = userName.where((element) {
-      print(element.Name!.toLowerCase() + "......." + value.toLowerCase());
-      bool t = element.Name!.toLowerCase().contains(value.toLowerCase());
-      print(t);
-      return t;
-    }).toList();
-    print(dName.length);
-    setState(() {
-
-    });
+                                        dName.clear();
+                                        dName = userName.where((element) {
+                                          print(element.Name!.toLowerCase() +
+                                              "......." +
+                                              value.toLowerCase());
+                                          bool t = element.Name!
+                                              .toLowerCase()
+                                              .contains(value.toLowerCase());
+                                          print(t);
+                                          return t;
+                                        }).toList();
+                                        print(dName.length);
+                                        setState(() {});
                                       },
                                       decoration: InputDecoration(
                                         suffixIcon: Icon(Icons.search),
@@ -126,8 +120,18 @@ StarRatingView((value){
                                               activeColor: Colors.yellow,
                                               checkColor: Colors.green,
                                               onChanged: (bool? value) {
-                                                dName[index].ischecked =
-                                                    value!;
+                                                dName[index].ischecked = value!;
+                                                if (dName[index].ischecked ==
+                                                    true) {
+                                                  selectedName.add(dName[index]
+                                                      .Name
+                                                      .toString());
+                                                } else {
+                                                  selectedName.remove(
+                                                      dName[index]
+                                                          .Name
+                                                          .toString());
+                                                }
                                                 setState(() {});
                                                 //  setState(() {
                                                 //    isChecked=value!;
@@ -140,7 +144,8 @@ StarRatingView((value){
                               actions: [
                                 TextButton(
                                     onPressed: () {
-                                      _field.text = "ddsfg";
+                                      _field.text =
+                                          "$selectedName"; //selectedName.iterator.toString();
                                       setState(() {});
                                     },
                                     child: Text('Save'))
@@ -158,9 +163,10 @@ StarRatingView((value){
             ),
           ],
         ),
+        StarRatingView((value) {
+          print(value);
+        }),
       ],
     );
   }
-
-  
 }
