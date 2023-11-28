@@ -1,6 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:newrepo/new_page.dart';
 
 void main() {
-  runApp(const HomePage());
+  runApp(const MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+       
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: Page(),
+    );
+  }
+}
+
+class Page extends StatelessWidget {
+  const Page({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+
+
